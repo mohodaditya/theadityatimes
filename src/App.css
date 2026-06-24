@@ -1,0 +1,125 @@
+/* ============================================
+   THE ADITYA TIMES — Design System
+   Global CSS Custom Properties & Reset
+   ============================================ */
+
+/* --- Color Tokens --- */
+:root {
+  --paper: #f5f0eb;
+  --paper-dark: #eae4dd;
+  --ink: #1a1a1a;
+  --ink-light: #333;
+  --editorial-red: #c41e1e;
+  --editorial-red-hover: #a01818;
+  --divider: #d4d0cc;
+  --divider-dark: #b8b4b0;
+  --text-muted: #666;
+  --text-light: #888;
+  --card-border: #e0dcd7;
+  --card-bg: #fff;
+  --desk-bg: #2a2a2a;
+  --desk-bg-light: #3a3a3a;
+  --white: #ffffff;
+  --black: #000000;
+  --shadow-page: rgba(0, 0, 0, 0.25);
+  --shadow-curl: rgba(0, 0, 0, 0.4);
+
+  /* --- Font Tokens --- */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  --font-ui: 'Source Sans 3', 'Helvetica Neue', Arial, sans-serif;
+
+  /* --- Reference Page Dimensions --- */
+  --page-width: 850px;
+  --page-height: 1100px;
+  --page-pad-x: 35px;
+  --page-pad-y: 20px;
+  --page-inner-width: 780px; /* 850 - 35*2 */
+}
+
+/* --- Global Reset --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow: hidden;
+  width: 100vw;
+  height: 100dvh;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow: hidden;
+  width: 100vw;
+  height: 100dvh;
+  background-color: var(--desk-bg);
+  font-family: var(--font-body);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size-adjust: from-font;
+}
+
+/* Prevent text selection during page turns */
+.is-turning {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Remove default button/link styles */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* Focus-visible for accessibility */
+:focus-visible {
+  outline: 2px solid var(--editorial-red);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

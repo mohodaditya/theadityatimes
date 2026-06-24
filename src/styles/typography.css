@@ -1,0 +1,434 @@
+/* ============================================
+   THE ADITYA TIMES — Typography
+   All sizes at 850×1100 reference resolution
+   ============================================ */
+
+/* --- Masthead --- */
+.masthead-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 52px;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.masthead-title--compact {
+  font-size: 36px;
+}
+
+.masthead-dateline {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.masthead-edition {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.masthead-volume {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* --- Headlines --- */
+.headline-main {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.headline-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.headline-article {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.headline-small {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--ink);
+}
+
+/* --- Subtitles --- */
+.subtitle {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-light);
+}
+
+.subtitle--small {
+  font-size: 14px;
+}
+
+/* --- Body Text --- */
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.body-text--small {
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* --- Drop Cap --- */
+.drop-cap::first-letter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 46px;
+  float: left;
+  line-height: 0.85;
+  margin-right: 6px;
+  margin-top: 2px;
+  color: var(--ink);
+}
+
+/* --- Bylines & Captions --- */
+.byline {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.byline strong,
+.byline b {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.caption {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* --- Section Labels --- */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--editorial-red);
+  padding: 3px 10px;
+  line-height: 1.5;
+}
+
+.section-label--outline {
+  color: var(--editorial-red);
+  background: transparent;
+  border: 1px solid var(--editorial-red);
+}
+
+.section-label--text {
+  color: var(--editorial-red);
+  background: transparent;
+  padding: 0;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+}
+
+/* --- Pull Quotes --- */
+.pull-quote-text {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.pull-quote-attr {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+/* --- Navigation --- */
+.nav-link {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--editorial-red);
+}
+
+.nav-link--active {
+  color: var(--editorial-red);
+}
+
+.nav-link--active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--editorial-red);
+}
+
+/* --- Subscribe Button --- */
+.subscribe-btn {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.subscribe-btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* --- Footer --- */
+.footer-masthead {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.footer-links {
+  font-family: var(--font-ui);
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.footer-copyright {
+  font-family: var(--font-ui);
+  font-size: 7px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  text-align: center;
+}
+
+/* --- Table Text --- */
+.table-header {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.table-cell {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.table-cell--bold {
+  font-weight: 600;
+}
+
+.table-cell--positive {
+  color: #2d8f4e;
+  font-size: 11px;
+}
+
+.table-cell--negative {
+  color: var(--text-muted);
+  font-size: 11px;
+}
+
+/* --- Proficiency Badge --- */
+.badge {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border: 1px solid var(--card-border);
+  border-radius: 2px;
+  color: var(--ink);
+}
+
+.badge--expert {
+  border-color: var(--editorial-red);
+  color: var(--editorial-red);
+}
+
+.badge--proficient {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* --- Classified / REF Code --- */
+.ref-code {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* --- Form Labels --- */
+.form-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.form-input {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--divider);
+  padding: 8px 10px;
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.form-textarea {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--divider);
+  padding: 8px 10px;
+  width: 100%;
+  resize: none;
+}
+
+.form-textarea::placeholder {
+  color: var(--text-light);
+  font-style: italic;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+.form-submit {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--ink);
+  border: none;
+  padding: 10px 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-submit:hover {
+  background: var(--ink-light);
+}
+
+/* --- Link Styles --- */
+.editorial-link {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.editorial-link:hover {
+  color: var(--editorial-red);
+}
+
+.editorial-link--red {
+  color: var(--editorial-red);
+}

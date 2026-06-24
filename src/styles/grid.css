@@ -1,0 +1,372 @@
+/* ============================================
+   THE ADITYA TIMES — Grid & Layout System
+   Newspaper column grids, dividers, cards
+   ============================================ */
+
+/* --- Page Inner Padding --- */
+.page-inner {
+  padding: var(--page-pad-y) var(--page-pad-x);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* --- Newspaper Column Grids --- */
+.grid-3col {
+  display: grid;
+  grid-template-columns: 180px 1fr 180px;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.grid-2col--wide-left {
+  grid-template-columns: 1.2fr 0.8fr;
+}
+
+.grid-2col--wide-right {
+  grid-template-columns: 0.8fr 1.2fr;
+}
+
+.grid-2col--sidebar {
+  grid-template-columns: 1fr 220px;
+}
+
+.grid-2col--sidebar-left {
+  grid-template-columns: 220px 1fr;
+}
+
+.grid-3col-equal {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  overflow: hidden;
+}
+
+.grid-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* --- Newspaper Multi-Column Text Flow --- */
+.text-2col {
+  column-count: 2;
+  column-gap: 18px;
+  column-rule: 1px solid var(--divider);
+}
+
+.text-3col {
+  column-count: 3;
+  column-gap: 16px;
+  column-rule: 1px solid var(--divider);
+}
+
+/* --- Dividers --- */
+.divider-h {
+  width: 100%;
+  height: 1px;
+  background: var(--divider);
+  border: none;
+  flex-shrink: 0;
+}
+
+.divider-h--dark {
+  background: var(--ink);
+}
+
+.divider-h--thick {
+  height: 2px;
+  background: var(--ink);
+}
+
+.divider-double {
+  width: 100%;
+  height: 5px;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.divider-v {
+  width: 1px;
+  background: var(--divider);
+  align-self: stretch;
+}
+
+/* --- Article Cards --- */
+.article-card {
+  border: 1px solid var(--card-border);
+  padding: 12px;
+  overflow: hidden;
+}
+
+.article-card--featured {
+  border: 1px solid var(--divider-dark);
+  padding: 14px;
+}
+
+.article-card--no-border {
+  border: none;
+  padding: 0;
+}
+
+/* --- Classified Box (dashed border) --- */
+.classified-box {
+  border: 1px dashed var(--divider-dark);
+  padding: 10px 12px;
+  margin-bottom: 8px;
+}
+
+.classified-box:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Advertisement Box --- */
+.advertisement-box {
+  border: 1px dashed var(--divider-dark);
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.advertisement-box__label {
+  font-family: var(--font-ui);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 6px;
+}
+
+/* --- Content Sections --- */
+.section-header {
+  margin-bottom: 8px;
+}
+
+.section-gap {
+  height: 10px;
+  flex-shrink: 0;
+}
+
+.section-gap--small {
+  height: 6px;
+}
+
+.section-gap--large {
+  height: 14px;
+}
+
+/* --- Masthead Bar --- */
+.masthead-bar {
+  padding: 10px var(--page-pad-x) 0;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.masthead-bar--compact {
+  padding: 6px var(--page-pad-x) 0;
+}
+
+.masthead-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+/* --- Nav Bar --- */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 6px var(--page-pad-x);
+  flex-shrink: 0;
+}
+
+.navbar__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.navbar__search {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--ink);
+  padding: 2px;
+}
+
+/* --- Footer Bar --- */
+.footer-bar {
+  padding: 8px var(--page-pad-x) 10px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.footer-bar .footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+/* --- Special Report Box --- */
+.special-report-box {
+  border: 1px solid var(--card-border);
+  padding: 10px 12px;
+}
+
+.special-report-box__header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+/* --- Statistics Table --- */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.stats-table th {
+  text-align: left;
+  padding: 4px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.stats-table td {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.stats-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* --- Utility --- */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-1 {
+  flex: 1;
+  min-height: 0;
+}
+
+.gap-4 { gap: 4px; }
+.gap-6 { gap: 6px; }
+.gap-8 { gap: 8px; }
+.gap-10 { gap: 10px; }
+.gap-12 { gap: 12px; }
+.gap-14 { gap: 14px; }
+
+.mt-4 { margin-top: 4px; }
+.mt-6 { margin-top: 6px; }
+.mt-8 { margin-top: 8px; }
+.mt-10 { margin-top: 10px; }
+.mt-auto { margin-top: auto; }
+
+.mb-4 { margin-bottom: 4px; }
+.mb-6 { margin-bottom: 6px; }
+.mb-8 { margin-bottom: 8px; }
+.mb-10 { margin-bottom: 10px; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.overflow-hidden { overflow: hidden; }
+
+/* --- Image placeholder (grey box) --- */
+.img-placeholder {
+  background: #d0ccc7;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.img-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* --- Tag / Category --- */
+.tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--editorial-red);
+  padding: 1px 6px;
+  border-radius: 1px;
+  cursor: pointer;
+}
+
+.tag--outline {
+  color: var(--editorial-red);
+  background: transparent;
+  border: 1px solid var(--editorial-red);
+}
+
+/* --- Breaking News Banner --- */
+.breaking-banner {
+  background: var(--editorial-red);
+  color: var(--white);
+  text-align: center;
+  padding: 6px 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* --- Legal Notices --- */
+.legal-notice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.legal-notice-row:last-child {
+  border-bottom: none;
+}

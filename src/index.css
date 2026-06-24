@@ -1,0 +1,5 @@
+/* THE ADITYA TIMES - CSS Imports */
+@import './App.css';
+@import './styles/newspaper.css';
+@import './styles/typography.css';
+@import './styles/grid.css';
