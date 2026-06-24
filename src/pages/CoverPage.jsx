@@ -76,7 +76,7 @@ export function CoverPage({ currentPage, onNavigate }) {
         {/* Center Column (Main Story) */}
         <div className="flex-col">
           <img 
-            src="/profile.png" 
+            src={`${import.meta.env.BASE_URL}profile.png`} 
             alt="Aditya Mohod Professional Portrait" 
             className="mb-2"
             style={{ 
@@ -170,7 +170,7 @@ export function CoverPage({ currentPage, onNavigate }) {
       <Divider className="mt-6 mb-4" />
       <div className="flex-row pb-2" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
         <div className="flex-row gap-6">
-          <a href="/Aditya_Mohod_Resume.pdf" download="Aditya_Mohod_Resume.pdf" className="form-submit" style={{ textDecoration: 'none', textAlign: 'center' }}>DOWNLOAD RESUME</a>
+          <a href={`${import.meta.env.BASE_URL}Aditya_Mohod_Resume.pdf`} download="Aditya_Mohod_Resume.pdf" className="form-submit" style={{ textDecoration: 'none', textAlign: 'center' }}>DOWNLOAD RESUME</a>
           <a href="https://github.com/mohodaditya" target="_blank" rel="noreferrer" className="form-submit" style={{ textDecoration: 'none', textAlign: 'center' }}>VIEW GITHUB</a>
           <a href="https://www.linkedin.com/in/aditya-mohod/" target="_blank" rel="noreferrer" className="form-submit" style={{ textDecoration: 'none', textAlign: 'center' }}>LINKEDIN PROFILE</a>
           <button className="form-submit" onClick={() => onNavigate(5)}>GET IN TOUCH</button>
