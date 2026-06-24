@@ -1,0 +1,1 @@
+var e={name:`Aditya Mohod`,title:`Full-Stack Developer & Engineering Student`,location:`India`,email:`adityamohod754@email.com`,github:`https://github.com/mohodaditya`,linkedin:`https://linkedin.com/in/adityamohod`,resume:`Aditya_Mohod_Resume.pdf`};export{e as t};
