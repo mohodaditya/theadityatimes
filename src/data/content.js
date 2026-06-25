@@ -161,31 +161,37 @@ export const PROJECTS = [
     title: 'Portfolio v2 — The Aditya Times',
     desc: 'A newspaper-styled portfolio built with React featuring Apple Books page-turn transitions and editorial design language.',
     tech: ['React', 'Vite', 'CSS', 'Canvas API'],
+    link: '#', // ADD YOUR PROJECT URL HERE (e.g. 'https://github.com/mohodaditya/theadityatimes')
   },
   {
     title: 'E-Commerce Dashboard',
     desc: 'Full-stack admin dashboard with real-time analytics, order management, and inventory tracking.',
     tech: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
+    link: '#', // ADD YOUR PROJECT URL HERE
   },
   {
     title: 'Weather Intelligence App',
     desc: 'Progressive web app providing hyperlocal weather forecasts with interactive maps and severe weather alerts.',
     tech: ['Vue.js', 'OpenWeather API', 'Mapbox', 'PWA'],
+    link: '#', // ADD YOUR PROJECT URL HERE
   },
   {
     title: 'Code Review Platform',
     desc: 'Collaborative code review tool with syntax highlighting, inline comments, and GitHub integration.',
     tech: ['React', 'Firebase', 'Monaco Editor', 'OAuth'],
+    link: '#', // ADD YOUR PROJECT URL HERE
   },
   {
     title: 'Task Management System',
     desc: 'Kanban-style project management tool with drag-and-drop, team collaboration, and sprint planning.',
     tech: ['React', 'Redux', 'Node.js', 'PostgreSQL'],
+    link: '#', // ADD YOUR PROJECT URL HERE
   },
   {
     title: 'API Gateway Service',
     desc: 'Microservice gateway with rate limiting, authentication, logging, and request routing.',
     tech: ['Node.js', 'Express', 'Redis', 'Docker'],
+    link: '#', // ADD YOUR PROJECT URL HERE
   },
 ];
 

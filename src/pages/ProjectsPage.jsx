@@ -29,7 +29,12 @@ export function ProjectsPage({ currentPage, onNavigate }) {
                 <div className="divider-h mt-4 mb-2" />
                 <div className="flex-row justify-between align-center" style={{ justifyContent: 'space-between' }}>
                   <span className="ref-code text-muted">REF: {idx + 101}</span>
-                  <span className="editorial-link">View Details →</span>
+                  {/* To add a custom URL for this project, add a "link" field to the project object in src/data/content.js */}
+                  {project.link ? (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="editorial-link">View Details →</a>
+                  ) : (
+                    <span className="editorial-link" style={{ cursor: 'pointer' }}>View Details →</span>
+                  )}
                 </div>
               </div>
             </ArticleCard>
