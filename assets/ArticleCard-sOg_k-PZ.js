@@ -1,0 +1,1 @@
+import{n as e}from"./index-2aVyqLNF.js";var t=e();function n({children:e,featured:n=!1,noBorder:r=!1,className:i=``}){let a=`article-card`;return n&&(a=`article-card--featured`),r&&(a=`article-card--no-border`),(0,t.jsx)(`div`,{className:`${a} flex-col ${i}`,children:e})}export{n as t};
