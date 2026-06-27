@@ -1,6 +1,7 @@
 import { PageShell } from '../components/PageShell';
 import { SectionLabel } from '../components/SectionLabel';
 import { Divider } from '../components/Divider';
+import { Helmet } from 'react-helmet-async';
 
 const TECH = ['React', 'Vite', 'Tailwind CSS', 'Material UI', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs'];
 
@@ -26,6 +27,26 @@ const CARDS = [
 export function DeshKaRojgarPage({ currentPage, onNavigate }) {
   return (
     <PageShell currentPage={currentPage} onNavigate={onNavigate} compact={false}>
+      <Helmet>
+        <title>DeshKaRojgar | MERN Stack Project | THE ADITYA TIMES</title>
+        <meta name="description" content="A special report on DeshKaRojgar, a MERN stack web application built by Aditya Mohod to connect local Indian job seekers with localized opportunities." />
+        <link rel="canonical" href="https://theadityatimes.site/projects/deshkarojgar" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "DeshKaRojgar",
+            "applicationCategory": "BusinessApplication",
+            "operatingSystem": "Web",
+            "url": "https://theadityatimes.site/projects/deshkarojgar",
+            "description": "Connecting Local Talent With Local Opportunities. A MERN stack project by Aditya Mohod.",
+            "author": {
+              "@type": "Person",
+              "name": "Aditya Mohod"
+            }
+          })}
+        </script>
+      </Helmet>
 
       {/* ══ PROJECT TITLE BAR ══ */}
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '16px' }}>
@@ -129,6 +150,13 @@ export function DeshKaRojgarPage({ currentPage, onNavigate }) {
         </p>
       </div>
 
+      {/* Page Number */}
+      <div className="flex-row mt-3" style={{ justifyContent: 'space-between', borderTop: '1px solid var(--divider)', paddingTop: '12px' }}>
+        <div className="byline" style={{ fontSize: '10px' }}>THE ADITYA TIMES</div>
+        <div className="byline" style={{ fontSize: '10px' }}>PAGE 3 OF 6</div>
+      </div>
+
     </PageShell>
   );
 }
+

@@ -1,9 +1,8 @@
 const NAV_ITEMS = [
-  { label: 'Projects', page: 4 },
-  { label: 'Skills', page: 3 },
-  { label: 'About', page: 1 },
-  { label: 'Archive', page: 6 },
-  { label: 'Contact', page: 9 },
+  { label: 'About', page: 1 }, // EducationPage
+  { label: 'Projects', page: 2 }, // DeshKaRojgarPage (first project)
+  { label: 'Notebook', page: 4 }, // BlogsPage
+  { label: 'Contact', page: 5 }, // ContactPage
 ];
 
 export function NavBar({ currentPage, onNavigate }) {

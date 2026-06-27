@@ -7,7 +7,7 @@ export const PERSONAL = {
   name: 'Aditya Mohod',
   title: 'Full-Stack Developer & Engineering Student',
   location: 'India',
-  email: 'adityamohod754@email.com',
+  email: 'adityamohod754@gmail.com',
   github: 'https://github.com/mohodaditya',
   linkedin: 'https://linkedin.com/in/adityamohod',
   resume: 'Aditya_Mohod_Resume.pdf',
@@ -40,25 +40,6 @@ Recent shifts in the technological landscape have democratized access to powerfu
   advertisement: '"Building the future, one line of code at a time."',
 };
 
-export const ABOUT = {
-  headline: 'Meet Aditya Mohod: The Engineer Behind The Code',
-  subtitle: 'A feature profile on the engineering student whose passion for technology and design is shaping a new generation of digital products.',
-  article: `The inception of Aditya Mohod's journey into technology was not merely a technical endeavor but a profound quest to bridge the gap between human experience and digital innovation. Growing up in India, Aditya witnessed firsthand the transformative power of technology in everyday life.
-
-"I was always fascinated by how a few lines of code could transform into something people interact with daily," Aditya recalls, reflecting on the early days of tinkering with HTML and CSS. What began as curiosity quickly evolved into a disciplined pursuit of software engineering excellence.
-
-Today, Aditya stands at the intersection of design and engineering — a developer who understands that great software isn't just about functionality, but about the experience it creates. From building responsive web applications to architecting scalable backend systems, his work reflects a commitment to quality that goes beyond the surface.
-
-The modern engineer must be both a logician and an artist, and Aditya embodies this duality. His projects demonstrate not just technical proficiency but an eye for aesthetics that elevates the user experience from functional to delightful.`,
-  pullQuote: '"The best code is invisible — the user should never have to think about the technology behind the experience."',
-  quickFacts: [
-    { label: 'Location', value: 'India' },
-    { label: 'Focus', value: 'Full-Stack Development' },
-    { label: 'Interests', value: 'UI/UX, Open Source, System Design' },
-    { label: 'Languages', value: 'English, Hindi, Marathi' },
-  ],
-};
-
 export const EDUCATION = {
   headline: 'Academic Foundation Forges Technical Excellence',
   subtitle: 'A comprehensive report on the educational journey that laid the groundwork for a career in technology.',
@@ -81,32 +62,6 @@ export const EDUCATION = {
     'Selected for advanced software engineering track',
     'Published research on modern web architectures',
     'Led technical workshops for junior students',
-  ],
-};
-
-export const SKILLS = {
-  headline: 'Tech Arena Changes Student Learning Experience',
-  subtitle: 'A comprehensive report on the shifting paradigms of modern software engineering competencies, featuring an exclusive index of critical proficiencies required in today\'s rapidly evolving digital markets.',
-  frontend: [
-    { name: 'React', desc: 'Component Architecture & Hooks', level: 'Expert' },
-    { name: 'Vue.js', desc: 'Reactive Interfaces', level: 'Proficient' },
-    { name: 'Tailwind CSS', desc: 'Utility-First Styling & Design Systems', level: 'Expert' },
-  ],
-  techSnapshot: [
-    { skill: 'JS/TS', score: 85.4, trend: '+2.1%' },
-    { skill: 'React', score: 92.8, trend: '+1.5%' },
-    { skill: 'Tailwind', score: 88.5, trend: '+3.4%' },
-    { skill: 'Node', score: 84.2, trend: '—0.0%' },
-    { skill: 'Python', score: 78.9, trend: '—0.5%' },
-    { skill: 'Docker', score: 72.1, trend: '+1.1%' },
-  ],
-  backend: [
-    { name: 'Node.js', desc: 'Event-Driven Architecture' },
-    { name: 'Python', desc: 'Data Processing & APIs' },
-  ],
-  tools: [
-    { name: 'Git / Version Control', desc: 'Advanced branching and collaboration workflows.' },
-    { name: 'Docker', desc: 'Containerized environments and deployment pipelines.' },
   ],
 };
 
@@ -153,88 +108,6 @@ export const DESHKAROJGAR = {
     { metric: 'Target Users', value: '10M+' },
     { metric: 'Languages', value: '10+' },
     { metric: 'States Covered', value: '28' },
-  ],
-};
-
-export const PROJECTS = [
-  {
-    title: 'Portfolio v2 — The Aditya Times',
-    desc: 'A newspaper-styled portfolio built with React featuring Apple Books page-turn transitions and editorial design language.',
-    tech: ['React', 'Vite', 'CSS', 'Canvas API'],
-    link: '#', // ADD YOUR PROJECT URL HERE (e.g. 'https://github.com/mohodaditya/theadityatimes')
-  },
-  {
-    title: 'E-Commerce Dashboard',
-    desc: 'Full-stack admin dashboard with real-time analytics, order management, and inventory tracking.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Chart.js'],
-    link: '#', // ADD YOUR PROJECT URL HERE
-  },
-  {
-    title: 'Weather Intelligence App',
-    desc: 'Progressive web app providing hyperlocal weather forecasts with interactive maps and severe weather alerts.',
-    tech: ['Vue.js', 'OpenWeather API', 'Mapbox', 'PWA'],
-    link: '#', // ADD YOUR PROJECT URL HERE
-  },
-  {
-    title: 'Code Review Platform',
-    desc: 'Collaborative code review tool with syntax highlighting, inline comments, and GitHub integration.',
-    tech: ['React', 'Firebase', 'Monaco Editor', 'OAuth'],
-    link: '#', // ADD YOUR PROJECT URL HERE
-  },
-  {
-    title: 'Task Management System',
-    desc: 'Kanban-style project management tool with drag-and-drop, team collaboration, and sprint planning.',
-    tech: ['React', 'Redux', 'Node.js', 'PostgreSQL'],
-    link: '#', // ADD YOUR PROJECT URL HERE
-  },
-  {
-    title: 'API Gateway Service',
-    desc: 'Microservice gateway with rate limiting, authentication, logging, and request routing.',
-    tech: ['Node.js', 'Express', 'Redis', 'Docker'],
-    link: '#', // ADD YOUR PROJECT URL HERE
-  },
-];
-
-export const ACHIEVEMENTS = {
-  headline: 'Student Developer Secures Multiple Victories In National Competitions',
-  subtitle: 'A compilation of breakthrough moments and recognition earned through dedication to engineering excellence.',
-  items: [
-    {
-      title: 'National Hackathon Champion',
-      desc: 'Secured first place at a national-level coding competition among 500+ participants, building an innovative solution for healthcare accessibility.',
-      date: 'March 2024',
-      type: 'hackathon',
-    },
-    {
-      title: 'Regional Code Sprint Winner',
-      desc: 'Won the 24-hour regional code sprint with a team project that demonstrated exceptional problem-solving and collaboration skills.',
-      date: 'January 2024',
-      type: 'hackathon',
-    },
-    {
-      title: 'Open Source Contributor Award',
-      desc: 'Recognized for significant contributions to open-source projects, including bug fixes and feature implementations in popular frameworks.',
-      date: 'December 2023',
-      type: 'award',
-    },
-    {
-      title: 'Dean\'s List — Academic Excellence',
-      desc: 'Consistently maintained top academic standing across all semesters, demonstrating excellence in both theoretical and practical coursework.',
-      date: '2021 — Present',
-      type: 'academic',
-    },
-    {
-      title: 'Web Development Workshop Lead',
-      desc: 'Organized and led a series of web development workshops for 100+ students, covering React, Node.js, and modern development practices.',
-      date: 'October 2023',
-      type: 'leadership',
-    },
-    {
-      title: 'Technical Paper Published',
-      desc: 'Co-authored a technical paper on modern web architecture patterns, accepted at a regional engineering conference.',
-      date: 'August 2023',
-      type: 'academic',
-    },
   ],
 };
 

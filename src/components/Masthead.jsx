@@ -14,21 +14,11 @@ export function Masthead({
 
   return (
     <div className={`masthead-bar ${compact ? 'masthead-bar--compact' : ''}`}>
-      {showMeta && !compact && (
+      {showMeta && (
         <div className="masthead-meta">
-          <span className="masthead-dateline">{location}</span>
-          <span className="masthead-edition">{edition}</span>
-          <span className="masthead-volume">Vol. MMXXIV</span>
-        </div>
-      )}
-      {compact && (
-        <div className="masthead-meta">
-          <span className="masthead-dateline">{dateStr.split(',')[0]}, {dateStr.split(',')[1]?.trim()?.split(' ')[0]} {today.getDate()}</span>
-          <div style={{ flex: 1 }} />
-          <span className="masthead-volume">
-            <button className="navbar__search" aria-label="Search">🔍</button>
-            <button className="subscribe-btn">Subscribe</button>
-          </span>
+          <span className="masthead-dateline" style={{ flex: 1, textAlign: 'left', textTransform: 'uppercase' }}>PUNE, MAHARASHTRA</span>
+          <span className="masthead-edition" style={{ flex: 1, textAlign: 'center', textTransform: 'uppercase', letterSpacing: '0.1em' }}>INDIA</span>
+          <span className="masthead-volume" style={{ flex: 1, textAlign: 'right', textTransform: 'uppercase' }}>{dateStr}</span>
         </div>
       )}
       <div className="divider-h--dark" style={{ marginBottom: compact ? 4 : 6 }} />

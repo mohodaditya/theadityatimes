@@ -1,31 +1,52 @@
 import { PageShell } from '../components/PageShell';
 import { SectionLabel } from '../components/SectionLabel';
 import { Divider } from '../components/Divider';
+import { Helmet } from 'react-helmet-async';
 
-const TECH = ['React', 'Vite', 'JavaScript', 'Tailwind CSS', 'Framer Motion', 'GitHub Pages'];
+const TECH = ['React', 'Vite', 'Node.js', 'Express', 'MongoDB', 'JWT', 'OAuth', 'Judge0 API'];
 
 const CARDS = [
   {
     label: 'PROBLEM',
-    title: 'Fragmented Learning',
-    text: 'Students preparing for technical roles must juggle multiple platforms for DSA, DBMS, OS, and Aptitude. There is no single, cohesive place to test knowledge across all core subjects.',
+    title: 'Fragmented Preparation',
+    text: 'Students must juggle multiple disconnected platforms for DSA practice, technical quizzes, and interview prep. There was no single, comprehensive environment combining code execution and structured assessments.',
   },
   {
     label: 'SOLUTION',
-    title: 'Unified Interactive Quizzes',
-    text: 'One platform covering all major technical subjects through categorized, interactive quizzes. Built with smooth animations and immediate feedback to make studying feel less like a chore.',
+    title: 'Unified Full-Stack Platform',
+    text: 'A robust MERN application integrating the Judge0 API for live code execution alongside interactive quizzes. Securely authenticated via JWT and Google OAuth for a seamless, production-ready experience.',
     accent: true,
   },
   {
     label: 'VALUE',
-    title: 'Validated by Competition',
-    text: 'Winning 2nd prize at a major hackathon validated both the platform\'s utility and its execution under real competitive conditions, proving that technical preparation doesn\'t have to be intimidating.',
+    title: 'Production-Ready Execution',
+    text: 'Evolving from an award-winning prototype into a fully architected product, it demonstrates strong system design, third-party API integration, and an unwavering focus on solving real student pain points.',
   },
 ];
 
 export function TechArenaPage({ currentPage, onNavigate }) {
   return (
     <PageShell currentPage={currentPage} onNavigate={onNavigate} compact={false}>
+      <Helmet>
+        <title>Tech Arena | Interactive Learning Platform | THE ADITYA TIMES</title>
+        <meta name="description" content="Inside Tech Arena, an interactive learning platform designed for frontend developers to master CSS layouts, component logic, and typography." />
+        <link rel="canonical" href="https://theadityatimes.site/projects/tech-arena" />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Tech Arena",
+            "applicationCategory": "EducationalApplication",
+            "operatingSystem": "Web",
+            "url": "https://theadityatimes.site/projects/tech-arena",
+            "description": "Interactive Technical Learning Platform. A MERN stack project by Aditya Mohod.",
+            "author": {
+              "@type": "Person",
+              "name": "Aditya Mohod"
+            }
+          })}
+        </script>
+      </Helmet>
 
       {/* ══ PROJECT TITLE BAR ══ */}
       <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '16px' }}>
@@ -35,12 +56,12 @@ export function TechArenaPage({ currentPage, onNavigate }) {
             Tech Arena
           </h2>
           <p style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', fontSize: '14px', color: 'var(--text-muted)', marginTop: '6px', lineHeight: 1.3 }}>
-            Interactive Learning Platform For Technical Education
+            Comprehensive Full-Stack Technical Preparation Platform
           </p>
         </div>
         <div className="byline" style={{ textAlign: 'right', lineHeight: '2' }}>
           <div>Type: <strong style={{ color: 'var(--ink)' }}>EdTech Web App</strong></div>
-          <div>Award: <strong style={{ color: 'var(--editorial-red)' }}>2nd Prize — Hackathon</strong></div>
+          <div>Status: <strong style={{ color: 'var(--editorial-red)' }}>Production-Ready MERN App</strong></div>
         </div>
       </div>
 
@@ -56,8 +77,8 @@ export function TechArenaPage({ currentPage, onNavigate }) {
               PROJECT CONCEPT
             </span>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: '14px', lineHeight: '1.75', color: 'var(--ink)' }}>
-              Tech Arena is a unified, interactive learning platform designed for computer science students. It consolidates preparation for technical interviews and exams into a single, engaging experience, replacing the need to juggle multiple disparate resources.
-            </p>
+              Tech Arena is a full-stack MERN platform for practicing computer science fundamentals through interactive quizzes and DSA coding. It features JWT authentication, Google OAuth, and Judge0-powered code execution for a seamless learning experience.
+            </p><q></q>
           </div>
 
           <div style={{ marginTop: '24px' }}>
@@ -125,8 +146,14 @@ export function TechArenaPage({ currentPage, onNavigate }) {
           WHY THIS PROJECT MATTERS
         </span>
         <p style={{ fontFamily: 'var(--font-ui)', fontSize: '14px', lineHeight: '1.75', color: 'var(--ink)' }}>
-          Tech Arena demonstrates that educational tools can be both highly functional and visually engaging. By lowering the friction to start studying, it helps students build consistency in their technical preparation.
+          Tech Arena demonstrates the ability to architect and deploy a robust full-stack application that solves real-world educational friction. By uniting backend stability, secure API integrations, and an intuitive frontend, it provides immense value to students.
         </p>
+      </div>
+
+      {/* Page Number */}
+      <div className="flex-row mt-3" style={{ justifyContent: 'space-between', borderTop: '1px solid var(--divider)', paddingTop: '12px' }}>
+        <div className="byline" style={{ fontSize: '10px' }}>THE ADITYA TIMES</div>
+        <div className="byline" style={{ fontSize: '10px' }}>PAGE 4 OF 6</div>
       </div>
 
     </PageShell>

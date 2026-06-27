@@ -1,0 +1,436 @@
+/* ============================================
+   THE ADITYA TIMES — Notebook Page Styles
+   Page 5: From The Notebook
+   ============================================ */
+
+/* --- Masonry Grid --- */
+.notebook-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  align-items: start;
+}
+
+/* --- Notebook Card Base --- */
+.notebook-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 14px;
+  padding: 14px 14px 12px;
+  cursor: pointer;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background 300ms ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04),
+              0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.notebook-card:hover {
+  transform: translateY(-6px) rotate(0.8deg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08),
+              0 4px 12px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.85);
+}
+
+/* --- Card Decorations --- */
+
+/* Folded corner */
+.notebook-card--fold::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(225deg, var(--paper) 50%, rgba(0, 0, 0, 0.05) 50%);
+  border-radius: 0 14px 0 4px;
+}
+
+/* Masking tape */
+.notebook-card--tape::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 42px;
+  height: 12px;
+  background: rgba(222, 210, 180, 0.55);
+  border-radius: 1px;
+  border: 0.5px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Paper clip */
+.notebook-card--clip::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  right: 16px;
+  width: 10px;
+  height: 22px;
+  border: 2px solid rgba(160, 160, 160, 0.45);
+  border-radius: 5px 5px 0 0;
+  border-bottom: none;
+}
+
+/* Quote decoration */
+.notebook-card--quote::before {
+  content: '"';
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  font-family: var(--font-display);
+  font-size: 34px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.06);
+  pointer-events: none;
+}
+
+/* Pin */
+.notebook-card--pin::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  background: var(--editorial-red);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+/* Sticky note */
+.notebook-card--sticky {
+  background: rgba(255, 248, 225, 0.55);
+  border-color: rgba(210, 195, 150, 0.2);
+}
+
+.notebook-card--sticky:hover {
+  background: rgba(255, 248, 225, 0.75);
+}
+
+/* Torn edge */
+.notebook-card--torn {
+  border-top: none;
+  border-radius: 0 0 14px 14px;
+}
+
+.notebook-card--torn::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.04) 3px,
+    rgba(0, 0, 0, 0.04) 4px
+  );
+}
+
+/* Notebook page lines */
+.notebook-card--lined {
+  background-image: repeating-linear-gradient(
+    transparent 0px,
+    transparent 17px,
+    rgba(180, 200, 220, 0.12) 17px,
+    rgba(180, 200, 220, 0.12) 18px
+  );
+  background-position: 0 42px;
+}
+
+/* Ink stamp */
+.notebook-card--stamp::after {
+  content: '✦';
+  position: absolute;
+  bottom: 10px;
+  right: 12px;
+  font-size: 11px;
+  color: rgba(196, 30, 30, 0.12);
+  pointer-events: none;
+}
+
+/* Coffee stain */
+.notebook-card--coffee::after {
+  content: '';
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(160, 120, 80, 0.08);
+  pointer-events: none;
+}
+
+/* --- Card Typography (Balanced proportions) --- */
+.notebook-card__date {
+  font-family: var(--font-ui);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 5px;
+}
+
+.notebook-card__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.25;
+  color: var(--ink);
+  margin-bottom: 5px;
+}
+
+.notebook-card__body {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  line-height: 1.5;
+  color: var(--ink-light);
+  margin-bottom: 9px;
+}
+
+.notebook-card__read {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.notebook-card__read:hover {
+  color: var(--editorial-red);
+}
+
+/* --- Reading Popup Overlay --- */
+.notebook-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease;
+}
+
+.notebook-overlay--open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* --- Reading Popup Paper (Balanced middle-ground) --- */
+.notebook-popup {
+  position: relative;
+  width: 550px;
+  max-width: 90vw;
+  max-height: 80vh;
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 40px 44px 36px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18),
+              0 8px 24px rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  transform: scale(0.95) translateY(12px);
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 300ms ease;
+  opacity: 0;
+}
+
+.notebook-overlay--open .notebook-popup {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+}
+
+.notebook-popup__close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 20px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: color 200ms ease;
+}
+
+.notebook-popup__close:hover {
+  color: var(--ink);
+}
+
+.notebook-popup__number {
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.notebook-popup__date {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.notebook-popup__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.2;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.notebook-popup__body {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.8;
+  color: var(--ink-light);
+  margin-bottom: 28px;
+}
+
+.notebook-popup__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--divider);
+  padding-top: 16px;
+}
+
+.notebook-popup__nav-btn {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px 0;
+  transition: color 200ms ease;
+  max-width: 45%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notebook-popup__nav-btn:hover {
+  color: var(--editorial-red);
+}
+
+.notebook-popup__nav-btn:disabled {
+  color: var(--text-light);
+  cursor: default;
+}
+
+/* --- Markdown Content Styles inside Popup --- */
+.notebook-popup__body p {
+  margin-bottom: 15px;
+}
+
+.notebook-popup__body p:last-child {
+  margin-bottom: 0;
+}
+
+.notebook-popup__body blockquote {
+  border-left: 3px solid var(--editorial-red);
+  margin: 16px 0;
+  padding: 8px 16px;
+  font-style: italic;
+  color: var(--ink-light);
+  font-size: 14px;
+}
+
+.notebook-popup__body ul,
+.notebook-popup__body ol {
+  margin: 14px 0;
+  padding-left: 20px;
+}
+
+.notebook-popup__body li {
+  margin-bottom: 7px;
+  line-height: 1.7;
+}
+
+.notebook-popup__body code {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 11.5px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px 5px;
+  border-radius: 4px;
+  color: var(--ink);
+}
+
+.notebook-popup__body pre {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  overflow-x: auto;
+  font-size: 11.5px;
+  line-height: 1.6;
+}
+
+.notebook-popup__body pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+.notebook-popup__body img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 16px 0;
+}
+
+.notebook-popup__body strong {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.notebook-popup__body em {
+  font-style: italic;
+}
+
+.notebook-popup__body h1,
+.notebook-popup__body h2,
+.notebook-popup__body h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  margin-top: 22px;
+  margin-bottom: 10px;
+}
+
+.notebook-popup__body h1 { font-size: 23px; }
+.notebook-popup__body h2 { font-size: 19px; }
+.notebook-popup__body h3 { font-size: 16px; }

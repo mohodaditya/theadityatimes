@@ -1,207 +1,157 @@
+import { useCallback, useMemo } from 'react';
 import { PageShell } from '../components/PageShell';
 import { SectionLabel } from '../components/SectionLabel';
-import { ArticleCard } from '../components/ArticleCard';
 import { Divider } from '../components/Divider';
+import { NotebookGrid } from '../components/NotebookGrid';
+import { NotebookModal } from '../components/NotebookModal';
+import { notes } from '../utils/loadNotes';
+import { Helmet } from 'react-helmet-async';
 
-export function BlogsPage({ currentPage, onNavigate }) {
+/**
+ * Page 6 — From The Notebook
+ *
+ * A personal developer notebook powered by Markdown files.
+ * Content is auto-discovered from src/content/notes/*.md at build time.
+ * No manual imports. No code changes. Just write and push.
+ */
+export function BlogsPage({ currentPage, onNavigate, activeNoteSlug, setNoteSlug }) {
+  
+  const activeNoteIndex = useMemo(() => {
+    if (!activeNoteSlug) return -1;
+    return notes.findIndex(n => n.slug === activeNoteSlug);
+  }, [activeNoteSlug]);
+
+  const activeNote = useMemo(() => {
+    if (activeNoteIndex === -1) return null;
+    return notes[activeNoteIndex];
+  }, [activeNoteIndex]);
+
+  const openNote = useCallback((idx) => {
+    if (idx >= 0 && idx < notes.length) {
+      setNoteSlug(notes[idx].slug);
+    }
+  }, [setNoteSlug]);
+
+  const closeNote = useCallback(() => {
+    setNoteSlug(null);
+  }, [setNoteSlug]);
+
+  const navNote = useCallback((idx) => {
+    if (idx >= 0 && idx < notes.length) {
+      setNoteSlug(notes[idx].slug);
+    }
+  }, [setNoteSlug]);
+
   return (
-    <PageShell currentPage={currentPage} onNavigate={onNavigate} compact={false}>
-      
-      {/* Header */}
-      <div className="text-center mb-6 mt-4">
-        <SectionLabel text="EDITORIAL SECTION // Pune, Maharashtra" className="mb-4" />
-        <h2 className="headline-main mb-2" style={{ fontSize: '46px', textTransform: 'uppercase' }}>
-          THOUGHTS, LESSONS & EXPERIENCES
+    <PageShell currentPage={currentPage} onNavigate={onNavigate} compact>
+      <Helmet>
+        <title>From The Notebook | Aditya Mohod | THE ADITYA TIMES</title>
+        <meta name="description" content="Read small thoughts, lessons, observations, UI inspirations, and debugging experiences collected throughout Aditya Mohod's software development journey." />
+        <link rel="canonical" href="https://theadityatimes.site/notebook" />
+      </Helmet>
+
+      {activeNote && (
+        <Helmet>
+          <title>{`${activeNote.title} | Aditya Mohod | THE ADITYA TIMES`}</title>
+          <meta name="description" content={activeNote.excerpt} />
+          <link rel="canonical" href={`https://theadityatimes.site/notebook/${activeNote.slug}`} />
+          
+          {/* Open Graph */}
+          <meta property="og:title" content={`${activeNote.title} | Aditya Mohod | THE ADITYA TIMES`} />
+          <meta property="og:description" content={activeNote.excerpt} />
+          <meta property="og:url" content={`https://theadityatimes.site/notebook/${activeNote.slug}`} />
+          <meta property="og:type" content="article" />
+          {activeNote.cover && <meta property="og:image" content={`https://theadityatimes.site${activeNote.cover}`} />}
+          
+          {/* Twitter */}
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={`${activeNote.title} | Aditya Mohod | THE ADITYA TIMES`} />
+          <meta name="twitter:description" content={activeNote.excerpt} />
+          {activeNote.cover && <meta name="twitter:image" content={`https://theadityatimes.site${activeNote.cover}`} />}
+
+          {/* Structured Data */}
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "headline": activeNote.title,
+              "description": activeNote.excerpt,
+              "datePublished": activeNote.date,
+              "url": `https://theadityatimes.site/notebook/${activeNote.slug}`,
+              "author": {
+                "@type": "Person",
+                "name": "Aditya Mohod"
+              }
+            })}
+          </script>
+        </Helmet>
+      )}
+
+      {/* ── SECTION 1: Header ── */}
+      <div className="text-center" style={{ marginBottom: '6px', marginTop: '4px' }}>
+        <SectionLabel text="EDITOR'S DESK" className="mb-3" />
+        <h2 className="headline-main" style={{ fontSize: '38px', textTransform: 'uppercase', marginBottom: '3px', letterSpacing: '0.01em' }}>
+          FROM THE NOTEBOOK
         </h2>
-        <div className="subtitle mb-2" style={{ fontSize: '20px' }}>
-          Exploring Technology, Development, Projects, Career Growth & Personal Learning
+        <div className="subtitle" style={{ fontSize: '14px', fontWeight: 600, marginBottom: '3px', color: 'var(--ink)' }}>
+          Ideas, Lessons, Experiments & Random Thoughts
         </div>
+        <p className="body-text text-center" style={{ fontSize: '10.5px', color: 'var(--text-muted)', maxWidth: '70%', margin: '0 auto', lineHeight: '1.45' }}>
+          A collection of small notes gathered while building products, solving problems, and learning software development.
+        </p>
       </div>
 
-      <Divider className="mb-6" />
+      <Divider style={{ marginBottom: '8px' }} />
 
-      {/* Scrollable container */}
-      <div className="flex-col flex-1" style={{ overflowY: 'auto', paddingRight: '10px' }}>
-        
-        {/* Intro */}
-        <div className="flex-col mb-6">
-          <h3 className="headline-section mb-3 text-center">FROM THE NOTEBOOK OF ADITYA MOHOD</h3>
-          <div className="body-text text-center mx-auto" style={{ maxWidth: '80%', lineHeight: '1.8' }}>
-            <p><strong>Every project teaches a lesson. Every mistake teaches a skill.</strong></p>
-            <p className="mt-2">This section contains articles, experiences, development insights, project stories, career lessons, and technical observations gathered throughout my journey as a software developer.</p>
-          </div>
-        </div>
+      {/* ── SECTION 2: Notebook Grid ── */}
+      <NotebookGrid notes={notes} onCardClick={openNote} />
 
-        <Divider className="mb-6" />
+      <Divider style={{ marginTop: '8px', marginBottom: '6px' }} />
 
-        <div className="grid-3col mb-6 gap-8">
-          {/* Left/Center Column: Featured Article & Metadata */}
-          <div className="flex-col gap-6" style={{ gridColumn: 'span 2' }}>
-            <div className="flex-col">
-              <SectionLabel text="FEATURED ARTICLE" className="mb-4" />
-              <ArticleCard featured className="p-6">
-                <div className="form-label mb-2" style={{ color: 'var(--editorial-red)' }}>[ EDITOR'S PICK ]</div>
-                <h3 className="headline-article mb-4" style={{ fontSize: '32px' }}>How Building Tech Arena Changed My Approach To Learning</h3>
-                
-                <div className="grid-3col gap-4 mb-6 pb-4" style={{ borderBottom: '1px solid var(--divider)' }}>
-                  <div className="flex-col">
-                    <span className="form-label text-muted mb-1">Reading Time:</span>
-                    <span className="body-text--small"><strong>6 Minutes</strong></span>
-                  </div>
-                  <div className="flex-col">
-                    <span className="form-label text-muted mb-1">Published:</span>
-                    <span className="body-text--small"><strong>June 2026</strong></span>
-                  </div>
-                  <div className="flex-col">
-                    <span className="form-label text-muted mb-1">Views:</span>
-                    <span className="body-text--small"><strong>2,540</strong></span>
-                  </div>
-                  <div className="flex-col">
-                    <span className="form-label text-muted mb-1">Likes:</span>
-                    <span className="body-text--small"><strong>128 ❤</strong></span>
-                  </div>
-                  <div className="flex-col">
-                    <span className="form-label text-muted mb-1">Rating:</span>
-                    <span className="body-text--small"><strong>4.9 ★</strong></span>
-                  </div>
-                </div>
-                
-                <h4 className="headline-small mb-2">Brief Summary:</h4>
-                <p className="body-text mb-6">
-                  Building Tech Arena taught me that great products are not just about code—they are about understanding users, solving problems, and continuously improving through feedback.
-                </p>
-                <button className="editorial-link" style={{ fontWeight: 'bold' }}>[ READ FULL ARTICLE ]</button>
-              </ArticleCard>
-            </div>
-
-            <div className="grid-2col gap-8 mt-4">
-              {/* Categories */}
-              <div className="flex-col">
-                <h3 className="headline-section mb-3 text-center">ARTICLE CATEGORIES</h3>
-                <div className="flex-row justify-center" style={{ flexWrap: 'wrap', gap: '8px' }}>
-                  <span className="badge">Development</span>
-                  <span className="badge">React</span>
-                  <span className="badge">JavaScript</span>
-                  <span className="badge">Projects</span>
-                  <span className="badge">Career</span>
-                  <span className="badge">UI / UX</span>
-                  <span className="badge">Hackathons</span>
-                  <span className="badge">Personal Journey</span>
-                </div>
-              </div>
-
-              {/* Community Insights */}
-              <div className="flex-col">
-                <h3 className="headline-section mb-3 text-center">COMMUNITY INSIGHTS</h3>
-                <table className="stats-table">
-                  <tbody>
-                    <tr>
-                      <td className="table-header">Articles Published:</td>
-                      <td className="table-cell table-cell--bold text-right">12</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">Total Reads:</td>
-                      <td className="table-cell table-cell--bold text-right">5,000+</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">Total Likes:</td>
-                      <td className="table-cell table-cell--bold text-right">850+</td>
-                    </tr>
-                    <tr>
-                      <td className="table-header">Average Rating:</td>
-                      <td className="table-cell table-cell--bold text-right">4.8★</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column: Recent Articles & Utilities */}
-          <div className="flex-col gap-6">
-            <div className="flex-col">
-              <SectionLabel text="RECENT ARTICLES" className="mb-4" />
-              
-              <div className="flex-col gap-5">
-                <div>
-                  <h4 className="headline-small mb-2 editorial-link" style={{ lineHeight: '1.4' }}>React Performance Tips Every Frontend Developer Should Know</h4>
-                  <div className="flex-row justify-between body-text--small text-muted mt-2">
-                    <span>5 min read</span>
-                    <span>❤ 84  |  ★ 4.8</span>
-                    <span className="editorial-link" style={{ fontWeight: 'bold' }}>Read →</span>
-                  </div>
-                </div>
-                <Divider />
-                <div>
-                  <h4 className="headline-small mb-2 editorial-link" style={{ lineHeight: '1.4' }}>My Experience Building DeshKaRojgar</h4>
-                  <div className="flex-row justify-between body-text--small text-muted mt-2">
-                    <span>7 min read</span>
-                    <span>❤ 103  |  ★ 4.9</span>
-                    <span className="editorial-link" style={{ fontWeight: 'bold' }}>Read →</span>
-                  </div>
-                </div>
-                <Divider />
-                <div>
-                  <h4 className="headline-small mb-2 editorial-link" style={{ lineHeight: '1.4' }}>Lessons Learned From My First Hackathon</h4>
-                  <div className="flex-row justify-between body-text--small text-muted mt-2">
-                    <span>4 min read</span>
-                    <span>❤ 95  |  ★ 4.8</span>
-                    <span className="editorial-link" style={{ fontWeight: 'bold' }}>Read →</span>
-                  </div>
-                </div>
-                <Divider />
-                <div>
-                  <h4 className="headline-small mb-2 editorial-link" style={{ lineHeight: '1.4' }}>Frontend Development Roadmap For Beginners</h4>
-                  <div className="flex-row justify-between body-text--small text-muted mt-2">
-                    <span>8 min read</span>
-                    <span>❤ 142  |  ★ 4.9</span>
-                    <span className="editorial-link" style={{ fontWeight: 'bold' }}>Read →</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Divider />
-
-            {/* Search Archive */}
-            <div className="flex-col">
-              <h3 className="headline-section mb-3 text-center">SEARCH ARCHIVE</h3>
-              <div style={{ display: 'flex', border: '1px solid var(--card-border)', padding: '12px 16px', borderRadius: '2px' }}>
-                <input 
-                  type="text" 
-                  placeholder="Search Articles..." 
-                  style={{ 
-                    border: 'none', 
-                    background: 'transparent', 
-                    flex: 1, 
-                    fontFamily: 'var(--font-ui)', 
-                    fontSize: '14px',
-                    outline: 'none',
-                    color: 'var(--ink)'
-                  }} 
-                />
-                <button style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '14px' }}>🔍</button>
-              </div>
-            </div>
-
-            <Divider />
-
-            {/* Write to Editor */}
-            <ArticleCard className="text-center mt-auto">
-              <h3 className="headline-small mb-3">WRITE TO THE EDITOR</h3>
-              <div className="body-text--small mb-4 text-muted">Readers can:</div>
-              <ul className="body-text flex-col gap-3" style={{ listStyleType: 'none' }}>
-                <li>❤ Like Articles</li>
-                <li>★ Rate Articles</li>
-                <li>💬 Leave Feedback</li>
-                <li>📤 Share Articles</li>
-              </ul>
-            </ArticleCard>
-
-          </div>
-        </div>
-
+      {/* ── SECTION 3: Pull Quote ── */}
+      <div className="text-center" style={{ marginBottom: '6px' }}>
+        <p className="pull-quote-text" style={{ fontSize: '15px', maxWidth: '80%', margin: '0 auto', lineHeight: '1.45', fontStyle: 'italic' }}>
+          "Some ideas become products. Others remain in the notebook. Both are worth writing down."
+        </p>
+        <span className="pull-quote-attr" style={{ fontSize: '8px', marginTop: '3px', display: 'block', fontWeight: 700, letterSpacing: '0.1em' }}>
+          — FROM THE EDITOR'S DESK
+        </span>
       </div>
+
+      <Divider style={{ marginBottom: '6px' }} />
+
+      {/* ── SECTION 4: Next Edition ── */}
+      <div className="flex-row" style={{ justifyContent: 'space-between', alignItems: 'center', padding: '2px 0' }}>
+        <div className="flex-row gap-8" style={{ alignItems: 'center' }}>
+          <span className="form-label" style={{ fontSize: '9px', fontWeight: 700, letterSpacing: '0.1em' }}>NEXT EDITION</span>
+          <span className="headline-small" style={{ fontSize: '12px', fontWeight: 800 }}>CONTACT & CLASSIFIEDS</span>
+          <span className="body-text" style={{ fontSize: '10px', color: 'var(--text-muted)', fontStyle: 'italic' }}>
+            Let's Build Something Together
+          </span>
+        </div>
+        <button
+          className="editorial-link"
+          style={{ fontWeight: 700, fontSize: '11px' }}
+          onClick={() => onNavigate(5)}
+        >
+          Turn To Page 6 →
+        </button>
+      </div>
+
+      {/* ── Reading Popup ── */}
+      <NotebookModal
+        notes={notes}
+        activeIndex={activeNoteIndex !== -1 ? activeNoteIndex : null}
+        onClose={closeNote}
+        onNav={navNote}
+      />
+
+      {/* Page Number */}
+      <div className="flex-row mt-3" style={{ justifyContent: 'space-between', borderTop: '1px solid var(--divider)', paddingTop: '10px' }}>
+        <div className="byline" style={{ fontSize: '10.5px', fontWeight: 700 }}>THE ADITYA TIMES</div>
+        <div className="byline" style={{ fontSize: '10.5px', fontWeight: 700 }}>PAGE 5 OF 6</div>
+      </div>
+
     </PageShell>
   );
 }

@@ -8,15 +8,17 @@ import { usePinchZoom } from './hooks/usePinchZoom';
 import { PageIndicator } from './components/PageIndicator';
 import { AriaAnnouncer } from './components/AriaAnnouncer';
 import { LoadingScreen } from './components/LoadingScreen';
+import { HelmetProvider } from 'react-helmet-async';
 
 // Lazy load pages for performance
 const CoverPage = lazy(() => import('./pages/CoverPage').then(m => ({ default: m.CoverPage })));
 const EducationPage = lazy(() => import('./pages/EducationPage').then(m => ({ default: m.EducationPage })));
-const TechArenaPage = lazy(() => import('./pages/TechArenaPage').then(m => ({ default: m.TechArenaPage })));
+// Removed ProjectsPage import as it's deprecated
 const DeshKaRojgarPage = lazy(() => import('./pages/DeshKaRojgarPage').then(m => ({ default: m.DeshKaRojgarPage })));
+const TechArenaPage = lazy(() => import('./pages/TechArenaPage').then(m => ({ default: m.TechArenaPage })));
 const BlogsPage = lazy(() => import('./pages/BlogsPage').then(m => ({ default: m.BlogsPage })));
 const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
-const BackCoverPage = lazy(() => import('./pages/BackCoverPage').then(m => ({ default: m.BackCoverPage })));
+// Removed BackCoverPage import as it's deprecated
 
 const PAGES = [
   CoverPage,
@@ -24,8 +26,7 @@ const PAGES = [
   DeshKaRojgarPage,
   TechArenaPage,
   BlogsPage,
-  ContactPage,
-  BackCoverPage
+  ContactPage
 ];
 
 export default function App() {
@@ -87,7 +88,7 @@ export default function App() {
   // Navigation state
   const {
     currentPage, targetPage, isAnimating,
-    totalPages, pageTitles,
+    totalPages, pageTitles, activeNoteSlug, setNoteSlug,
     goToPage, nextPage, prevPage, jumpToPage,
     completeTurn, cancelTurn
   } = usePageNavigation();
@@ -125,7 +126,7 @@ export default function App() {
 
   // The actual render tree
   return (
-    <>
+    <HelmetProvider>
       {!fontsLoaded && <LoadingScreen />}
       <div
         className="newspaper-viewport"
@@ -135,99 +136,109 @@ export default function App() {
           overflow: isZoomed ? 'auto' : 'hidden', // Hide intentional margin bleed when unzoomed
           touchAction: 'pan-x pan-y', // Ensure browser sends raw multi-touch events
         }}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUpOrLeave}
-      onPointerLeave={handlePointerUpOrLeave}
-    >
-      <AriaAnnouncer currentPageTitle={pageTitles[currentPage]} />
-
-      {/* Navigation Arrows */}
-      <button
-        className={`nav-arrow nav-arrow--left ${currentPage === 0 ? 'nav-arrow--hidden' : ''}`}
-        onClick={prevPage}
-        disabled={isAnimating || currentPage === 0}
-        aria-label="Previous Page"
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUpOrLeave}
+        onPointerLeave={handlePointerUpOrLeave}
       >
-        <span className="nav-arrow__icon">‹</span>
-      </button>
+        <AriaAnnouncer currentPageTitle={pageTitles[currentPage]} />
 
-      <button
-        className={`nav-arrow nav-arrow--right ${currentPage === totalPages - 1 ? 'nav-arrow--hidden' : ''}`}
-        onClick={nextPage}
-        disabled={isAnimating || currentPage === totalPages - 1}
-        aria-label="Next Page"
-      >
-        <span className="nav-arrow__icon">›</span>
-      </button>
+        {/* Navigation Arrows */}
+        <button
+          className={`nav-arrow nav-arrow--left ${currentPage === 0 ? 'nav-arrow--hidden' : ''}`}
+          onClick={prevPage}
+          disabled={isAnimating || currentPage === 0}
+          aria-label="Previous Page"
+        >
+          <span className="nav-arrow__icon">‹</span>
+        </button>
 
-      {/* Zoom Controls */}
-      <div className="zoom-controls" style={{ position: 'fixed', zIndex: 200 }}>
-        <button className="zoom-btn" onClick={handleZoomIn} aria-label="Zoom In">+</button>
-        <button className="zoom-btn" onClick={handleZoomOut} aria-label="Zoom Out">−</button>
-        <button className="zoom-btn zoom-btn--reset" onClick={handleResetZoom} aria-label="Reset Zoom">↺</button>
-      </div>
+        <button
+          className={`nav-arrow nav-arrow--right ${currentPage === totalPages - 1 ? 'nav-arrow--hidden' : ''}`}
+          onClick={nextPage}
+          disabled={isAnimating || currentPage === totalPages - 1}
+          aria-label="Next Page"
+        >
+          <span className="nav-arrow__icon">›</span>
+        </button>
 
-      <div
-        className="newspaper-centering-wrapper"
-        style={{
-          width: `${REFERENCE_WIDTH * effectiveScale}px`,
-          height: `${REFERENCE_HEIGHT * effectiveScale}px`,
-        }}
-      >
+        {/* Zoom Controls */}
+        <div className="zoom-controls" style={{ position: 'fixed', zIndex: 200 }}>
+          <button className="zoom-btn" onClick={handleZoomIn} aria-label="Zoom In">+</button>
+          <button className="zoom-btn" onClick={handleZoomOut} aria-label="Zoom Out">−</button>
+          <button className="zoom-btn zoom-btn--reset" onClick={handleResetZoom} aria-label="Reset Zoom">↺</button>
+        </div>
+
         <div
-          ref={newspaperRef}
-          className="newspaper-page"
+          className="newspaper-centering-wrapper"
           style={{
-            transform: `scale(${effectiveScale})`,
-            transformOrigin: 'top left',
-            position: 'absolute',
-            top: 0,
-            left: 0
+            width: `${REFERENCE_WIDTH * effectiveScale}px`,
+            height: `${REFERENCE_HEIGHT * effectiveScale}px`,
           }}
         >
-          {/* Next/Target Page (Bottom Layer) */}
-          {isTurning && (
-            <div className="newspaper-page" style={{ zIndex: 1, boxShadow: 'none' }} aria-hidden="true" inert="true">
-              <Suspense fallback={<div className="page-content-wrapper p-4">Loading...</div>}>
-                <TargetPageComponent currentPage={targetPage} onNavigate={goToPage} />
-              </Suspense>
-            </div>
-          )}
-
-          {/* Current Page (Top Layer, clipped during turn) */}
           <div
+            ref={newspaperRef}
             className="newspaper-page"
             style={{
-              zIndex: 2,
-              clipPath: clipPath,
-              boxShadow: isTurning ? 'none' : undefined,
-              pointerEvents: isTurning ? 'none' : 'auto'
+              transform: `scale(${effectiveScale})`,
+              transformOrigin: 'top left',
+              position: 'absolute',
+              top: 0,
+              left: 0
             }}
-            aria-hidden={isTurning ? "true" : "false"}
-            inert={isTurning ? "true" : undefined}
           >
-            <Suspense fallback={<div className="page-content-wrapper p-4">Loading...</div>}>
-              <CurrentPageComponent currentPage={currentPage} onNavigate={goToPage} />
-              {currentPage === 0 && !isTurning && curlProgress === 0 && (
-                <div className="swipe-hint">
-                  <span className="swipe-hint__arrow">←</span> Swipe or drag edge to turn
-                </div>
-              )}
-            </Suspense>
+            {/* Next/Target Page (Bottom Layer) */}
+            {isTurning && (
+              <div className="newspaper-page" style={{ zIndex: 1, boxShadow: 'none' }} aria-hidden="true" inert="true">
+                <Suspense fallback={<div className="page-content-wrapper p-4">Loading...</div>}>
+                  <TargetPageComponent
+                    currentPage={targetPage}
+                    onNavigate={goToPage}
+                    activeNoteSlug={activeNoteSlug}
+                    setNoteSlug={setNoteSlug}
+                  />
+                </Suspense>
+              </div>
+            )}
+
+            {/* Current Page (Top Layer, clipped during turn) */}
+            <div
+              className="newspaper-page"
+              style={{
+                zIndex: 2,
+                clipPath: clipPath,
+                boxShadow: isTurning ? 'none' : undefined,
+                pointerEvents: isTurning ? 'none' : 'auto'
+              }}
+              aria-hidden={isTurning ? "true" : "false"}
+              inert={isTurning ? "true" : undefined}
+            >
+              <Suspense fallback={<div className="page-content-wrapper p-4">Loading...</div>}>
+                <CurrentPageComponent
+                  currentPage={currentPage}
+                  onNavigate={goToPage}
+                  activeNoteSlug={activeNoteSlug}
+                  setNoteSlug={setNoteSlug}
+                />
+                {currentPage === 0 && !isTurning && curlProgress === 0 && (
+                  <div className="swipe-hint">
+                    <span className="swipe-hint__arrow">←</span> Swipe or drag edge to turn
+                  </div>
+                )}
+              </Suspense>
+            </div>
+
+            {/* Canvas for fold shadow and page edge highlight */}
+            <canvas ref={canvasRef} className="curl-canvas" />
           </div>
-
-          {/* Canvas for fold shadow and page edge highlight */}
-          <canvas ref={canvasRef} className="curl-canvas" />
         </div>
-      </div>
 
-      <PageIndicator
-        totalPages={totalPages}
-        currentPage={currentPage}
-        onDotClick={jumpToPage}
-      />
-    </div>
-    </>
+        <PageIndicator
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onDotClick={jumpToPage}
+        />
+      </div>
+    </HelmetProvider>
   );
 }

@@ -2,6 +2,7 @@ import { PageShell } from '../components/PageShell';
 import { SectionLabel } from '../components/SectionLabel';
 import { ArticleCard } from '../components/ArticleCard';
 import { Divider } from '../components/Divider';
+import { Helmet } from 'react-helmet-async';
 
 export function CoverPage({ currentPage, onNavigate }) {
   return (
@@ -12,6 +13,46 @@ export function CoverPage({ currentPage, onNavigate }) {
       edition="SPECIAL TECHNOLOGY EDITION"
       location="PUNE, MAHARASHTRA, INDIA"
     >
+      <Helmet>
+        <title>THE ADITYA TIMES | Aditya Mohod – MERN Stack Developer</title>
+        <meta name="description" content="Explore THE ADITYA TIMES, an interactive newspaper-style portfolio by Aditya Mohod showcasing MERN Stack projects, software engineering work, technical notebook entries and product thinking." />
+        <link rel="canonical" href="https://theadityatimes.site/" />
+        <meta name="keywords" content="Aditya Mohod, MERN Stack Developer, Software Engineer, React Developer, Node.js Developer, Full Stack Developer, Portfolio, Pune, India, Web Developer" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="THE ADITYA TIMES | Aditya Mohod – MERN Stack Developer" />
+        <meta property="og:description" content="Explore THE ADITYA TIMES, an interactive newspaper-style portfolio by Aditya Mohod showcasing MERN Stack projects, software engineering work, technical notebook entries and product thinking." />
+        <meta property="og:url" content="https://theadityatimes.site/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="THE ADITYA TIMES" />
+        <meta property="og:image" content="https://theadityatimes.site/social-share.png" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="THE ADITYA TIMES | Aditya Mohod – MERN Stack Developer" />
+        <meta name="twitter:description" content="Explore THE ADITYA TIMES, an interactive newspaper-style portfolio by Aditya Mohod showcasing MERN Stack projects, software engineering work, technical notebook entries and product thinking." />
+        <meta name="twitter:image" content="https://theadityatimes.site/social-share.png" />
+
+        {/* Structured Data */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "THE ADITYA TIMES",
+            "url": "https://theadityatimes.site/",
+            "author": {
+              "@type": "Person",
+              "name": "Aditya Mohod",
+              "jobTitle": "MERN Stack Developer",
+              "url": "https://theadityatimes.site/",
+              "sameAs": [
+                "https://github.com/mohodaditya",
+                "https://www.linkedin.com/in/aditya-mohod/"
+              ]
+            }
+          })}
+        </script>
+      </Helmet>
       
       {/* Front Page Feature Header */}
       <div className="text-center mb-6 mt-4">
@@ -176,7 +217,7 @@ export function CoverPage({ currentPage, onNavigate }) {
           <button className="form-submit" onClick={() => onNavigate(5)}>GET IN TOUCH</button>
         </div>
         <div className="byline" style={{ fontSize: '10px' }}>
-          PAGE 1 OF 7
+          PAGE 1 OF 6
         </div>
       </div>
       
