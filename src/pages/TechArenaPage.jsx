@@ -108,7 +108,7 @@ export function TechArenaPage({ currentPage, onNavigate }) {
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', padding: '0 4px' }}>
             <span className="caption" style={{ color: 'var(--text-muted)', letterSpacing: '0.06em', fontSize: '11px' }}>PLATFORM PREVIEW</span>
             <div style={{ display: 'flex', gap: '24px' }}>
-              {[{ label: '▶ Live Demo', href: '#' }, { label: '💻 GitHub', href: '#' }, { label: '📄 Documentation', href: '#' }].map(({ label, href }, i) => (
+              {[{ label: '▶ Live Demo', href: 'https://tech-arena-platform.netlify.app' }, { label: '💻 GitHub', href: 'https://github.com/mohodaditya/Tech_Arena' }, { label: '📄 Documentation', href: '#' }].map(({ label, href }, i) => (
                 <a key={i} href={href} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-ui)', fontSize: '11px', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--ink)', textDecoration: 'none' }} onMouseEnter={e => e.target.style.color = 'var(--editorial-red)'} onMouseLeave={e => e.target.style.color = 'var(--ink)'}>
                   {label}
                 </a>
